@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.IOException;
+
 public class BasePage {
     public static WebDriver driver;
 
@@ -15,6 +17,7 @@ public class BasePage {
         System.setProperty("webdriver.chrome.driver", exePath);
         driver = new ChromeDriver();
         Thread.sleep(2000);
+        driver.manage().window().maximize();
     }
 
     public static void goToUrl(String Url) throws InterruptedException {
@@ -50,6 +53,14 @@ public class BasePage {
         // Login to Dell
         driver.close();
     }
+
+    public static void makeReport() throws IOException {
+//        Process process  = Runtime.getRuntime().exec("cmd /c start cmd.exe /K java -jar selenium-server-standalone-2.44.0.jar -role hub");
+        Process path  = Runtime.getRuntime().exec( "cmd /c start cmd.exe /K C:\\Tools\\allure-2.18.1\\bin");
+        Process report  = Runtime.getRuntime().exec( "cmd /c start cmd.exe /K C:\\Tools\\allure-2.18.1\\bin\\allure serve C:\\Users\\eg.plan\\Documents\\GitHub\\EGTestBDDFramework\\allure-results");
+        // allure serve allure serve C:\Users\eg.plan\Documents\GitHub\EGTestBDDFramework\allure-results
+    }
+
 
 }
 
